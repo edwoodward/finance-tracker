@@ -11,10 +11,24 @@
           <li class="nav-item active">
             <%= link_to "Portfolio", portfolio_path, class: "nav-link"%>
           </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Profile
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to edit_user_registration_path(current_user), class: "dropdown-item" do%>
+                <%= fa_icon 'edit' %> Edit your profile
+              <% end %>
+            </div>
+          </li>
         <% end %>
       </ul>
+
       <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
+          <li class="nav-item active">
+            <span class="nav-link"><%= fa_icon 'user' %> <%= current_user.full_name %></span>
+          </li>  
            <li class="nav-item active">
             <%= link_to('Logout', destroy_user_session_path, method: :delete, class: "nav-link") %>
           </li>
