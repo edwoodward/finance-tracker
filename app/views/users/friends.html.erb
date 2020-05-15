@@ -1,0 +1,44 @@
+<h1>Friends</h1>
+
+<div class="search-area">
+  <h3>Search Friends</h3>
+
+  <%= form_tag search_friend_path, remote: true, method: :get do %>
+    <div class="form-group row">
+      <div class="col-sm-9 no-right-padding">
+        <%= text_field_tag :friend, params[:friend], placeholder: "Name or email", autofocus: true, class: "form-control form-control-lg" %>
+      </div>
+      <div class="col-sm-3 no-left-padding">
+        <%= button_tag type: :submit, class: "btn btn-success" do %>
+          <%= fa_icon 'search 2x' %>
+        <% end %>
+
+      </div>
+    </div>
+
+  <% end %>
+</div>
+<div id="friend_results">
+
+</div>
+
+<% @friends.each do |friend| %>
+  <div class="container">
+    <div class="col-4">
+    <div class="row row-cols-2">
+      <div class="col">
+        <h4><%= friend.full_name %></h4>
+      </div>
+      <div class="col">
+        <%= link_to 'Stop Following','#', method: :delete, data: {confirm: 'Are you sure?'},class: 'btn btn-sm btn-warning' %>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <% if !friend.stocks.empty? %>
+    <%= render 'stocks/list', obj: friend%>
+  <% end %>
+
+<% end %>
+
