@@ -1,0 +1,9 @@
+<h1>Friends</h1>
+
+<% @friends.each do |friend| %>
+  <h3><%= friend.full_name %></h3>
+
+  <%= render 'stocks/list', obj: friend%>
+
+<% end %>
+

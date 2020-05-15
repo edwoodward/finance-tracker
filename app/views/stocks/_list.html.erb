@@ -6,16 +6,20 @@
             <th scope="col">Ticker</th>
             <th scope="col">Name</th>
             <th scope="col">Price</th>
-            <th scope="col">Actions</th>
+            <% if obj == current_user %>
+              <th scope="col">Actions</th>
+            <% end %>
           </tr>
         </thead>
         <tbody>
-        <% @tracked_stocks.each do |stock| %>
+        <% obj.stocks.each do |stock| %>
           <tr>
             <td scope="row"><%= stock.ticker %></td>
             <td><%= stock.name %></td>
             <td><%= stock.last_price %></td>
-            <td><%= link_to 'Remove', user_stock_path(stock), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-sm btn-warning' %></td>
+            <% if obj == current_user %>
+              <td><%= link_to 'Remove', user_stock_path(stock), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-sm btn-warning' %></td>
+            <% end %>
           </tr>
         <% end %>
         </tbody>
