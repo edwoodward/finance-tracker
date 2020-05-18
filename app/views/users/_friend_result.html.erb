@@ -11,7 +11,11 @@
             <td><strong>Name:</strong> <%= f.full_name %></td> 
             <td><strong>Email:</strong> <%= f.email %></td> 
             <td><strong>Actions:</strong><%= link_to 'View Profile', '#', class: "btn btn-sm btn-success"%> 
-              <%= link_to 'Follow Friend?', "#", class: "btn btn-sm btn-success", method: :post %></td>
+              <% if !current_user.friends.include?(f) %>
+                <%= link_to 'Follow Friend?', friendship_index_path(friend: f), class: "btn btn-sm btn-success", method: :post %></td>
+              <% else %>
+                Already friends
+              <%end %>
           </tr>
         <% end %>
       </tbody>

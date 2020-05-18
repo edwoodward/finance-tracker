@@ -30,7 +30,7 @@
         <h4><%= friend.full_name %></h4>
       </div>
       <div class="col">
-        <%= link_to 'Stop Following','#', method: :delete, data: {confirm: 'Are you sure?'},class: 'btn btn-sm btn-warning' %>
+        <%= link_to 'Stop Following',friendship_path(friend), method: :delete, data: {confirm: 'Are you sure?'},class: 'btn btn-sm btn-warning' %>
       </div>
     </div>
     </div>
