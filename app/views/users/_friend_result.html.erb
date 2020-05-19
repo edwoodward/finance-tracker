@@ -10,7 +10,7 @@
           <tr>
             <td><strong>Name:</strong> <%= f.full_name %></td> 
             <td><strong>Email:</strong> <%= f.email %></td> 
-            <td><strong>Actions:</strong><%= link_to 'View Profile', '#', class: "btn btn-sm btn-success"%> 
+            <td><strong>Actions:</strong><%= link_to 'View Profile', user_path(f), class: "btn btn-sm btn-success"%> 
               <% if !current_user.friends.include?(f) %>
                 <%= link_to 'Follow Friend?', friendship_index_path(friend: f), class: "btn btn-sm btn-success", method: :post %></td>
               <% else %>

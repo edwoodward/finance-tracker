@@ -6,9 +6,9 @@
             <th scope="col">Ticker</th>
             <th scope="col">Name</th>
             <th scope="col">Price</th>
-            <% if obj == current_user %>
+            
               <th scope="col">Actions</th>
-            <% end %>
+            
           </tr>
         </thead>
         <tbody>
@@ -17,9 +17,13 @@
             <td scope="row"><%= stock.ticker %></td>
             <td><%= stock.name %></td>
             <td><%= stock.last_price %></td>
-            <% if obj == current_user %>
-              <td><%= link_to 'Remove', user_stock_path(stock), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-sm btn-warning' %></td>
-            <% end %>
+            <td>
+              <% if obj == current_user %>
+                <%= link_to 'Remove', user_stock_path(stock), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-sm btn-warning' %>
+              <% elsif current_user.can_track_stock?(stock.ticker)%>
+                <%= link_to 'Add to Portfolio', user_stocks_path(user: current_user, ticker: stock.ticker), class: "btn btn-xs btn-success", method: :post %>
+              <% end %>
+            </td>
           </tr>
         <% end %>
         </tbody>

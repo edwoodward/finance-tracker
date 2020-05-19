@@ -1,0 +1,22 @@
+<h1>User Profile</h1>
+
+<div class="results-block mt-3">
+    <table class="col-md-12">
+      <tbody>
+          <tr>
+            <td><strong>Name:</strong> <%= @user.full_name %>&nbsp;</td> 
+            <td><strong>Email:</strong> <%= @user.email %>&nbsp;</td> 
+            <% if !current_user.friends.include?(@user) %>
+              <td><strong>Actions: <%= link_to 'Follow Friend?', friendship_index_path(friend: @user), class: "btn btn-sm btn-success", method: :post %></td>
+            <%end %>
+            <span class="mb-3"/>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <% if !@user.stocks.empty? %>
+    <%= render 'stocks/list', obj: @user%>
+  <% else %>
+    <p class="lead">This user is not tracking any stocks</p>
+  <% end %>
